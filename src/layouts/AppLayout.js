@@ -1,10 +1,11 @@
 import React from 'react';
+import { Outlet } from "react-router-dom";
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
 import AppSidebar from './AppSidebar';
 import '../styles/AppLayout.scss';
 
-function AppLayout(props) {
+const AppLayout = (props) => {
   const { children } = props;
   return (
     <>
@@ -13,7 +14,10 @@ function AppLayout(props) {
         <div className='sidebar'>
           <AppSidebar />
         </div>
-        <div className='contents'>{children}</div>
+        <div className='contents'>
+          {/* {children} */}
+          <Outlet />
+        </div>
       </div>
       <AppFooter />
     </>

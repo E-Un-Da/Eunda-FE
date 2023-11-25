@@ -1,12 +1,12 @@
 .sidebar {
-  position: absolute;
-  left: calc(240px); /* AppHeader의 너비 + AppHeader의 padding 값 */
-  top: 40px; /* 헤더바의 높이에 맞게 조절 */
-  width: 200px;
-  height: 100%;
+  left: 0; 
+  top: 53px; /* 헤더바의 높이에 맞게 조절 */
+  width: 250px;
+  height: 100vh;
   background-color: #f2f2f2;
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
 }
 
 .sidebar-layout {

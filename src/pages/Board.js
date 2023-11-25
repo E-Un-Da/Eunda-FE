@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Container from '../components/Container';
-import AppSidebar from '../layouts/AppSidebar';
 import AppLayout from '../layouts/AppLayout';
 
 const SelectButtonWrapper = styled.div`
@@ -112,7 +111,6 @@ const Board = () => {
   };
 
   return (
-    <AppLayout>
       <Container>
         <SelectButtonWrapper>
           <StyledSelect value={sortBy} onChange={handleChange}>
@@ -163,7 +161,6 @@ const Board = () => {
           Next Page
         </button>
       </Container>
-    </AppLayout>
   );
 };
 
