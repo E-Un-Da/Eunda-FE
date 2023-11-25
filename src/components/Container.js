@@ -6,8 +6,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 3%;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 export default Container;

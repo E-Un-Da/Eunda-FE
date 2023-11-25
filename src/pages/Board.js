@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Container from '../components/Container';
-import AppLayout from '../layouts/AppLayout';
 
 const SelectButtonWrapper = styled.div`
   display: flex;
