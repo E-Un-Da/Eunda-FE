@@ -5,7 +5,7 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  width: calc(100% - 500px); /* 전체 너비에서 양옆 500px을 뺀 값 */
+  width: 100%; /* 전체 너비에서 양옆 500px을 뺀 값 */
   background-color: #333;
   color: white;
   padding: 10px;
@@ -13,7 +13,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #3498db;
+  background-color: #fff;
+  border-bottom: 1px solid #333;
 }
 
 .logo {
@@ -28,7 +29,7 @@
 
 .signUpButton,
 .signInButton {
-  background-color: #2ecc71;
+  background-color: inherit;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -36,9 +37,11 @@
   font-size: 14px;
   font-weight: bold;
   border-radius: 4px;
+  color: #333;
+  margin-right: 50px;
 }
 
 .signUpButton:hover,
 .signInButton:hover {
-  background-color: #27ae60;
+  background-color: inherit;
 }
