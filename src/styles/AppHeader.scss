@@ -1,0 +1,44 @@
+.AppHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - 500px); /* 전체 너비에서 양옆 500px을 뺀 값 */
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3498db;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.authButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.signUpButton,
+.signInButton {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.signUpButton:hover,
+.signInButton:hover {
+  background-color: #27ae60;
+}

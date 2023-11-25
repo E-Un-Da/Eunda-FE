@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Container from '../components/Container';
+import AppSidebar from '../layouts/AppSidebar';
+import AppLayout from '../layouts/AppLayout';
 
 const SelectButtonWrapper = styled.div`
   display: flex;
@@ -110,56 +112,58 @@ const Board = () => {
   };
 
   return (
-    <Container>
-      <SelectButtonWrapper>
-        <StyledSelect value={sortBy} onChange={handleChange}>
-          <StyledOption value='createdAt'>생성일자</StyledOption>
-          <StyledOption value='category'>카테고리</StyledOption>
-          <StyledOption value='recruit'>모집상태</StyledOption>
-        </StyledSelect>
-        <PuppleButton type='submit' value='스터디 생성' />
-      </SelectButtonWrapper>
-      <Table>
-        <thead>
-          <tr>
-            <TableHeaderCell width='8%' padding='5px'>
-              카테고리
-            </TableHeaderCell>
-            <TableHeaderCell width='25%'>스터디장</TableHeaderCell>
-            <TableHeaderCell width='25%'>스터디명</TableHeaderCell>
-            <TableHeaderCell width='10%'>모집인원</TableHeaderCell>
-            <TableHeaderCell width='15%'>생성일자</TableHeaderCell>
-            <TableHeaderCell width='15%'>모집상태</TableHeaderCell>
-          </tr>
-        </thead>
-        <tbody>
-          {studies.map((study) => (
-            <tr key={study.id}>
-              <TableBodyCell width='8%' padding='5px'>
-                {study.category}
-              </TableBodyCell>
-              <TableBodyCell width='25%'>{study.leader}</TableBodyCell>
-              <TableBodyCell width='25%'>{study.title}</TableBodyCell>
-              <TableBodyCell width='10%'>
-                {study.headcount + '/' + study.recruitNum}
-              </TableBodyCell>
-              <TableBodyCell width='15%'>
-                {new Date(study.createdAt).toLocaleDateString()}
-              </TableBodyCell>
-              <TableBodyCell width='15%'>
-                {study.recruit ? '모집' : '안해'}
-              </TableBodyCell>
+    <AppLayout>
+      <Container>
+        <SelectButtonWrapper>
+          <StyledSelect value={sortBy} onChange={handleChange}>
+            <StyledOption value='createdAt'>생성일자</StyledOption>
+            <StyledOption value='category'>카테고리</StyledOption>
+            <StyledOption value='recruit'>모집상태</StyledOption>
+          </StyledSelect>
+          <PuppleButton type='submit' value='스터디 생성' />
+        </SelectButtonWrapper>
+        <Table>
+          <thead>
+            <tr>
+              <TableHeaderCell width='8%' padding='5px'>
+                카테고리
+              </TableHeaderCell>
+              <TableHeaderCell width='25%'>스터디장</TableHeaderCell>
+              <TableHeaderCell width='25%'>스터디명</TableHeaderCell>
+              <TableHeaderCell width='10%'>모집인원</TableHeaderCell>
+              <TableHeaderCell width='15%'>생성일자</TableHeaderCell>
+              <TableHeaderCell width='15%'>모집상태</TableHeaderCell>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-      <button onClick={() => setPage((prevPage) => prevPage - 1)}>
-        Previous Page
-      </button>
-      <button onClick={() => setPage((prevPage) => prevPage + 1)}>
-        Next Page
-      </button>
-    </Container>
+          </thead>
+          <tbody>
+            {studies.map((study) => (
+              <tr key={study.id}>
+                <TableBodyCell width='8%' padding='5px'>
+                  {study.category}
+                </TableBodyCell>
+                <TableBodyCell width='25%'>{study.leader}</TableBodyCell>
+                <TableBodyCell width='25%'>{study.title}</TableBodyCell>
+                <TableBodyCell width='10%'>
+                  {study.headcount + '/' + study.recruitNum}
+                </TableBodyCell>
+                <TableBodyCell width='15%'>
+                  {new Date(study.createdAt).toLocaleDateString()}
+                </TableBodyCell>
+                <TableBodyCell width='15%'>
+                  {study.recruit ? '모집' : '안해'}
+                </TableBodyCell>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        <button onClick={() => setPage((prevPage) => prevPage - 1)}>
+          Previous Page
+        </button>
+        <button onClick={() => setPage((prevPage) => prevPage + 1)}>
+          Next Page
+        </button>
+      </Container>
+    </AppLayout>
   );
 };
 
