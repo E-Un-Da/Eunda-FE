@@ -1,18 +1,17 @@
 body {
-	margin: 0 auto;
-	padding: 80px;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .contents-container {
-	margin: 20px; /* 양쪽 공백 설정 */
+  margin: 20px; /* 양쪽 공백 설정 */
 }
 
 .contents {
-	// min-height: 100%; /* 컨텐츠의 최소 높이 설정 */
-	flex: 1;
+  // min-height: 100%; /* 컨텐츠의 최소 높이 설정 */
+  flex: 1;
 }
 
-
 .page-container {
-	display: flex;
+  display: flex;
 }
