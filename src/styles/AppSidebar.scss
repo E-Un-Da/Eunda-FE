@@ -17,4 +17,11 @@
   margin-bottom: 10px;
   padding: 8px;
   border-bottom: 1px solid #ddd; /* 각 항목 사이에 경계선 추가 */
+  text-decoration: none; /* 밑줄 제거 */
+  color: black; /* 링크 색상 지정 */
+  cursor: pointer; /* 포인터 커서로 변경하여 클릭 가능함을 나타냄 */
+  &:hover {
+    /* 마우스 오버시 스타일 변경 (예: 백그라운드 색상 변경) */
+    background-color: #f0f0f0;
+  }
 }

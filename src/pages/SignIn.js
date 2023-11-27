@@ -7,19 +7,24 @@ import useInput from '../hooks/useInput';
 import Title from '../components/Title';
 import FormContainer from '../components/FormContainer';
 
+
 const SignUp = () => {
   const [email, setEmail] = useInput('');
   const [password, setPassword] = useInput('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     try {
       const response = await axios.post('http://localhost:8080/signin', {
         email: email,
         password: password,
+      }, {
+        withCredentials: true, // 추가해줘야 애플리케이션 쿠키에 저장된다.
       });
-      console.log(response.data);
+      
+      console.log(response.data);     
+      
     } catch (err) {
       console.log(err);
     }
