@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import PuppleButton from '../components/PuppleButton';
 import WhiteButton from '../components/WhiteButton';
@@ -9,6 +10,7 @@ import FormContainer from '../components/FormContainer';
 
 
 const SignIn = () => {
+  const history = useNavigate();
   const [email, setEmail] = useInput('');
   const [password, setPassword] = useInput('');
 
@@ -23,7 +25,8 @@ const SignIn = () => {
         withCredentials: true, // 추가해줘야 애플리케이션 쿠키에 저장된다.
       });
       
-      console.log(response.data);     
+      console.log(response.data);
+      history('/');
       
     } catch (err) {
       console.log(err);
