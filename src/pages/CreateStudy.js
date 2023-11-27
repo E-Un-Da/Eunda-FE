@@ -24,6 +24,8 @@ const CreateStudy = () => {
         rule,
         intro,
         recruitNum,
+      }, {
+        withCredentials: true,
       });
       console.log(response.data);
     } catch (err) {
