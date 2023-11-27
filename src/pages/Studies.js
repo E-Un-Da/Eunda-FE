@@ -65,9 +65,9 @@ const Table = styled.table`
     height: 3vh;
     vertical-align: middle;
     font-size: 0.7rem;
-    overflow: hidden; /* 내용이 넘칠 경우 숨김 처리 */
-    white-space: nowrap; /* 한 줄에 표시 */
-    text-overflow: ellipsis; /* 넘치는 내용에 대해 ...으로 표시 */
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis;
     text-align: left;
   }
 `;
@@ -116,7 +116,7 @@ const TitleLink = styled(Link)`
   color: #333;
 `;
 
-const Board = () => {
+const Studies = () => {
   const [studies, setStudies] = useState([]);
   const [page, setPage] = useState(1);
   const [sortBy, setSortBy] = useState('createdAt');
@@ -133,7 +133,7 @@ const Board = () => {
         const totalPages = Math.ceil(totalItems / 15);
         setTotalPages(totalPages);
         console.log(response.data.content);
-        setStudies(response.data.content); // 스터디 목록을 받아온 데이터로 업데이트
+        setStudies(response.data.content); 
       } catch (error) {
         console.error(error);
       }
@@ -143,7 +143,7 @@ const Board = () => {
   }, [page, sortBy, isAsc]);
 
   const handleChange = (e) => {
-    setSortBy(e.target.value); // 선택한 옵션 업데이트
+    setSortBy(e.target.value); 
   };
 
   return (
@@ -207,4 +207,4 @@ const Board = () => {
   );
 };
 
-export default Board;
+export default Studies;
