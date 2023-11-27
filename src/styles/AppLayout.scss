@@ -9,6 +9,7 @@ body {
 
 .contents {
   // min-height: 100%; /* 컨텐츠의 최소 높이 설정 */
+  min-height: 100vh;
   flex: 1;
 }
 
