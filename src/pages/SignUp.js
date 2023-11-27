@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import PuppleButton from '../components/PuppleButton';
 import InputField from '../components/Input';
 import Container from '../components/Container';
 import useInput from '../hooks/useInput';
 import Title from '../components/Title';
 import FormContainer from '../components/FormContainer';
-
-
-
 
 
 const SignUp = () => {
