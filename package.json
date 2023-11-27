@@ -9,6 +9,7 @@
     "antd": "^5.11.4",
     "axios": "^1.6.2",
     "cra-template": "1.2.0",
+    "framer-motion": "^10.16.5",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
