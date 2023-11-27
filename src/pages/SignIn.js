@@ -8,7 +8,7 @@ import Title from '../components/Title';
 import FormContainer from '../components/FormContainer';
 
 
-const SignUp = () => {
+const SignIn = () => {
   const [email, setEmail] = useInput('');
   const [password, setPassword] = useInput('');
 
@@ -56,4 +56,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;
