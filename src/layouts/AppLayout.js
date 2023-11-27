@@ -19,7 +19,7 @@ const AppLayout = (props) => {
           <Outlet />
         </div>
       </div>
-      <AppFooter />
+      {/* <AppFooter /> */}
     </>
   );
 }
