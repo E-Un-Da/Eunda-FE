@@ -9,6 +9,8 @@ import useInput from '../hooks/useInput';
 import TextareaField from '../components/Textarea';
 import ModalInput from '../components/ModalInput';
 
+axios.defaults.withCredentials = true;
+
 const CardContainer = styled.div`
   display: flex;
 `;
@@ -144,102 +146,13 @@ const BottomButton = styled.button`
   }
 `;
 
-const Modal = ({ closeModal }) => {
-  const { id } = useParams();
-  const [title, setTitle] = useInput('');
-  const [contents, setContents] = useInput('');
-
-  const handleCreateCard = async () => {
-    try {
-      const response = await axios.post(
-        `http://localhost:8080/studies/${id}/cards`,
-        {
-          title,
-          contents,
-        }
-      );
-
-      console.log('카드 생성 성공:', response.data);
-
-      closeModal();
-
-      window.location.reload();
-    } catch (error) {
-      console.error('카드 생성 실패:', error);
-    }
-  };
-  return (
-    <Backdrop onClick={closeModal}>
-      <ModalWrapper onClick={(e) => e.stopPropagation()}>
-        <ModalTitle>카드 생성</ModalTitle>
-        <ModalInput
-          label='카드 제목'
-          type='text'
-          placeholder='카드 제목'
-          value={title}
-          onChange={setTitle}
-        />
-        <TextareaField
-          label='스터디 내용'
-          value={contents}
-          onChange={setContents}
-        />
-        <Button onClick={handleCreateCard}>카드 생성</Button>
-      </ModalWrapper>
-    </Backdrop>
-  );
-};
-
-
-const InviteModal = ({ closeModal }) => {
-    const { id } = useParams();
-    const [email, setEmail] = useInput('');
-  
-    const handleInviteMember = async () => {
-      try {
-        const response = await axios.post(
-          `http://localhost:8080/studies/${id}/invites`,
-          {
-            email
-          }
-        );
-  
-        console.log('멤버 초대 성공:', response.data);
-  
-        closeModal();
-  
-        window.location.reload();
-      } catch (error) {
-        console.error('멤버 초대 실패:', error);
-      }
-    };
-    return (
-      <Backdrop onClick={closeModal}>
-        <ModalWrapper onClick={(e) => e.stopPropagation()}>
-          <ModalTitle>멤버 초대</ModalTitle>
-          <ModalInput
-            label='초대할 멤버의 이메일'
-            type='email'
-            placeholder='초대할 멤버의 이메일'
-            value={email}
-            onChange={setEmail}
-          />
-          <Button onClick={handleInviteMember}>멤버 초대</Button>
-        </ModalWrapper>
-      </Backdrop>
-    );
-  };
-
-
-
-axios.defaults.withCredentials = true;
-
 const StudyDetail = () => {
   const { id } = useParams();
   const [study, setStudy] = useState(null);
   const [cardDetails, setCardDetails] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
+  const [error, setError] = useState('');
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -265,6 +178,7 @@ const StudyDetail = () => {
         setCardDetails(response.data.cardDetails);
       } catch (error) {
         console.error(error);
+        setError(error.response.data.message);
       }
     };
 
@@ -275,7 +189,6 @@ const StudyDetail = () => {
     width: 100%;
     height: 100%;
   `;
-
 
   // 컬럼별로 카드 렌더링
   const renderCardsByStatus = (status) => {
@@ -333,7 +246,92 @@ const StudyDetail = () => {
     );
   };
 
+  const Modal = ({ closeModal }) => {
+    const { id } = useParams();
+    const [title, setTitle] = useInput('');
+    const [contents, setContents] = useInput('');
 
+    const handleCreateCard = async () => {
+      try {
+        const response = await axios.post(
+          `http://localhost:8080/studies/${id}/cards`,
+          {
+            title,
+            contents,
+          }
+        );
+
+        console.log('카드 생성 성공:', response.data);
+
+        closeModal();
+
+        window.location.reload();
+      } catch (error) {
+        console.error('카드 생성 실패:', error);
+        setError(error.response.data.message);
+      }
+    };
+    return (
+      <Backdrop onClick={closeModal}>
+        <ModalWrapper onClick={(e) => e.stopPropagation()}>
+          <ModalTitle>카드 생성</ModalTitle>
+          <ModalInput
+            label='카드 제목'
+            type='text'
+            placeholder='카드 제목'
+            value={title}
+            onChange={setTitle}
+          />
+          <TextareaField
+            label='스터디 내용'
+            value={contents}
+            onChange={setContents}
+          />
+          <Button onClick={handleCreateCard}>카드 생성</Button>
+        </ModalWrapper>
+      </Backdrop>
+    );
+  };
+
+  const InviteModal = ({ closeModal }) => {
+    const { id } = useParams();
+    const [email, setEmail] = useInput('');
+
+    const handleInviteMember = async () => {
+      try {
+        const response = await axios.post(
+          `http://localhost:8080/studies/${id}/invites`,
+          {
+            email,
+          }
+        );
+
+        console.log('멤버 초대 성공:', response.data);
+
+        closeModal();
+
+        window.location.reload();
+      } catch (error) {
+        console.error('멤버 초대 실패:', error);
+        setError(error.response.data.message);
+      }
+    };
+    return (
+      <Backdrop onClick={closeModal}>
+        <ModalWrapper onClick={(e) => e.stopPropagation()}>
+          <ModalTitle>멤버 초대</ModalTitle>
+          <ModalInput
+            label='초대할 멤버의 이메일'
+            type='email'
+            placeholder='초대할 멤버의 이메일'
+            value={email}
+            onChange={setEmail}
+          />
+          <Button onClick={handleInviteMember}>멤버 초대</Button>
+        </ModalWrapper>
+      </Backdrop>
+    );
+  };
 
   // 드래그 앤 드롭
 
@@ -382,12 +380,11 @@ const StudyDetail = () => {
     } catch (error) {
       // 오류 처리
       console.error(error);
+      setError(error.response.data.message);
       // 실패 시 롤백
       setCardDetails(cardDetails);
     }
   };
-
-
 
   // 모집 상태 변경
   const handleStatusChange = async () => {
@@ -398,13 +395,14 @@ const StudyDetail = () => {
       console.log('상태 변경 요청 성공:', response.data);
     } catch (error) {
       console.error('상태 변경 요청 실패:', error);
-      
+      setError(error.response.data.message);
     }
   };
 
   return (
     <Container>
       <Title>{study && study.title}</Title>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <ModalButton onClick={openModal}>카드 생성</ModalButton>
       {isModalOpen && <Modal closeModal={closeModal} />}
       <DragDropContext onDragEnd={handleDragEnd}>

@@ -65,8 +65,8 @@ const Table = styled.table`
     height: 3vh;
     vertical-align: middle;
     font-size: 0.7rem;
-    overflow: hidden; 
-    white-space: nowrap; 
+    overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
     text-align: left;
   }
@@ -133,7 +133,7 @@ const Studies = () => {
         const totalPages = Math.ceil(totalItems / 15);
         setTotalPages(totalPages);
         console.log(response.data.content);
-        setStudies(response.data.content); 
+        setStudies(response.data.content);
       } catch (error) {
         console.error(error);
       }
@@ -143,7 +143,7 @@ const Studies = () => {
   }, [page, sortBy, isAsc]);
 
   const handleChange = (e) => {
-    setSortBy(e.target.value); 
+    setSortBy(e.target.value);
   };
 
   return (
