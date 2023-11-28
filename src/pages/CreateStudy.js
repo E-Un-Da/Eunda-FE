@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import PuppleButton from '../components/PuppleButton';
 import WhiteButton from '../components/WhiteButton';
 import InputField from '../components/Input';
@@ -8,6 +9,7 @@ import Title from '../components/Title';
 import FormContainer from '../components/FormContainer';
 
 const CreateStudy = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useInput('');
   const [category, setCategory] = useInput('');
   const [rule, setRule] = useInput('');
@@ -18,16 +20,23 @@ const CreateStudy = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/studies', {
-        title,
-        category,
-        rule,
-        intro,
-        recruitNum,
-      }, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        'http://localhost:8080/studies',
+        {
+          title,
+          category,
+          rule,
+          intro,
+          recruitNum,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
       console.log(response.data);
+
+      navigate(`/studies/${response.data.id}`);
     } catch (err) {
       console.log(err);
     }
