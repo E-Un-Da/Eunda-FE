@@ -146,6 +146,16 @@ const Studies = () => {
     setSortBy(e.target.value);
   };
 
+  const handleJoinRequest = async (studyId) => {
+    try {
+      await axios.post(`http://localhost:8080/studies/${studyId}/join-request`);
+
+      alert('스터디에 참여신청하였습니다! 스터디장의 수락을 기다려주세요.');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Container>
       <SelectButtonWrapper>
@@ -189,7 +199,9 @@ const Studies = () => {
               </TableBodyCell>
               <TableBodyCell width='15%'>
                 {study.recruit ? (
-                  <RecruitButton>참여 신청하기</RecruitButton>
+                  <RecruitButton onClick={() => handleJoinRequest(study.id)}>
+                    참여 신청하기
+                  </RecruitButton>
                 ) : (
                   <NotRecruit>모집 마감</NotRecruit>
                 )}
