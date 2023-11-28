@@ -310,6 +310,8 @@ const StudyDetail = () => {
 
         closeModal();
 
+        alert('초대 메일을 발송하였습니다.');
+
         window.location.reload();
       } catch (error) {
         console.error('멤버 초대 실패:', error);
@@ -393,6 +395,7 @@ const StudyDetail = () => {
         `http://localhost:8080/studies/${id}/status`
       );
       console.log('상태 변경 요청 성공:', response.data);
+      alert('모집 상태가 변경되었습니다.');
     } catch (error) {
       console.error('상태 변경 요청 실패:', error);
       setError(error.response.data.message);
